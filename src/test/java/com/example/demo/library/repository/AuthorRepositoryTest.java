@@ -29,6 +29,6 @@ class AuthorRepositoryTest {
 
         assertThat(authors).isNotNull();
         assertThat(authors).hasSize(1);
-        assertThat(authors.get(0).getBooks()).isEmpty();
+        assertThat(authors.get(0).getBooks()).isNullOrEmpty();
     }
 }

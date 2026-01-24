@@ -14,12 +14,18 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * 
  */
 @Entity
 @Table(name = "authors")
+// Annotation Lombok
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Author {
 
 	@Id
@@ -42,25 +48,12 @@ public class Author {
 	private List<Book> books;
 	
 	//	constructeur protected → bonne pratique JPA
-	protected Author() {
-		
-	}
+	//protected Author() {}
 	
 	//	constructor
 	public Author(String name) {
 		this.name = name;
 	}
-	
-	//	getter
-	public Long getId() {
-		return id;
-	}
-	public String getName() {
-		return name;
-	}
-	public List<Book> getBooks() {
-		return books;
-	}
-	
+
 	
 }
