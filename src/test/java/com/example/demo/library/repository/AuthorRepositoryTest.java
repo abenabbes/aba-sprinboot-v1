@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 
+import com.example.demo.domain.entity.Book;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -33,8 +34,6 @@ class AuthorRepositoryTest {
         assertThat(authors.get(0).getBooks()).isNullOrEmpty();
     }
     
-    @Test
-    void should_return_authors_with_and_without_books() {
         Author author1 = new Author("Author One");
         Author author2 = new Author("Author Two");
         authorRepository.save(author1);
@@ -48,6 +47,7 @@ class AuthorRepositoryTest {
         List<Author> authors = authorRepository.findAllWithBooks();
         List<Book> booksOfAuthor1 = bookRepository.findByAuthorId(author1.getId());
         
+
         assertThat(authors).hasSize(2);
 
         Author a1 = authors.stream()
