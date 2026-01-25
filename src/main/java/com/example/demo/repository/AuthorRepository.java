@@ -18,6 +18,6 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
 	// FETCH
 	//   → évite le N+1 problem
 	//   → Hibernate charge authors + books en une requête
-	@Query("SELECT a FROM Author a LEFT JOIN FETCH a.books")
+	@Query("SELECT DISTINCT a FROM Author a LEFT JOIN FETCH a.books")
 	List<Author> findAllWithBooks();
 }
