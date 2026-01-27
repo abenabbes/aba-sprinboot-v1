@@ -20,4 +20,12 @@ public class FindAuthorBooksServiceImpl implements FindAuthorBooksService{
     public List<Author> findAllAuthors() {
         return authorRepository.findAll();
     }
+
+    @Override
+    public Author findAuthorByName(String name) {
+        // Logique métier
+        // Vérifier d'abord si un Author existe d'abord
+
+        return authorRepository.findAuthorByName(name);
+    }
 }

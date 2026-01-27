@@ -20,4 +20,6 @@ public interface AuthorRepository extends JpaRepository<Author, Long> {
 	//   → Hibernate charge authors + books en une requête
 	@Query("SELECT DISTINCT a FROM Author a LEFT JOIN FETCH a.books")
 	List<Author> findAllWithBooks();
+
+	Author findAuthorByName(String name);
 }
