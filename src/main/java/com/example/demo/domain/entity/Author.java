@@ -3,11 +3,16 @@
  */
 package com.example.demo.domain.entity;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import com.example.demo.domain.Gender;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,6 +24,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 
@@ -27,7 +33,8 @@ import lombok.NoArgsConstructor;
 @Table(name = "authors")
 // Annotation Lombok
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@NoArgsConstructor
 @AllArgsConstructor
 @Builder
 public class Author {
@@ -36,8 +43,15 @@ public class Author {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name", nullable = false)
-	private String name;
+	@Column(nullable = false)	
+	private String nom;
+	
+	@Column(nullable = false)
+	private String prenom;
+	
+	@Column(nullable = false)
+	@Enumerated(EnumType.STRING)
+	private Gender sexe;
 	
 	// Un Author pour plusieurs Books
 	@OneToMany(
@@ -51,13 +65,5 @@ public class Author {
 			)
 	private List<Book> books;
 	
-	//	constructeur protected → bonne pratique JPA
-	//protected Author() {}
-	
-	//	constructor
-	public Author(String name) {
-		this.name = name;
-	}
-
 	
 }

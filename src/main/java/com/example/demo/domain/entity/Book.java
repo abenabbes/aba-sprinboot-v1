@@ -3,6 +3,11 @@
  */
 package com.example.demo.domain.entity;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import com.example.demo.domain.Gender;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,8 +18,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * 
@@ -23,7 +30,9 @@ import lombok.NoArgsConstructor;
 @Table(name = "books")
 // Annotation Lombok
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
 	@Id
@@ -32,17 +41,17 @@ public class Book {
 
     @Column(nullable = false)
     private String title;
+    
+    @Column(nullable = false)
+    private int pages;
+    
+    @Column(nullable = false)
+    private LocalDate datePublication;
 
     // Plusieurs Books pour un Author
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "author_id") // clé étrangère vers Author
     private Author author;
 
-    //protected Book() { // JPA only }
-    
-    public Book(String title, Author author) {
-        this.title = title;
-        this.author = author;
-    }
 
 }
